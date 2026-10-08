@@ -1,5 +1,6 @@
 import { type FormEvent, useEffect, useRef, useState } from 'react'
 import { saveOrder } from './orders'
+import { mexicoStateNames, mexicoStates } from './data/mexico'
 import { PURCHASE_URL } from './config/purchase'
 
 const PRICE = 15375
@@ -116,7 +117,7 @@ export function PurchaseSimulation({ onClose }: { onClose: () => void }) {
             <div className="sim-carrier"><span className="sim-dhl">DHL</span><div><b>Paquetería DHL{shipsFree ? ' · Chihuahua' : ' · tarifa nacional'}</b><small>Rastreo incluido</small></div><b>{!state ? `${money(SHIPPING_RATE)} + IVA (fuera de Chihuahua)` : shipsFree ? 'Incluido' : `${money(SHIPPING_RATE)} + IVA`}</b></div>
             <label>Calle y número *<input name="street" required maxLength={120} placeholder="Calle Ejemplo 123" /></label>
             <div className="sim-row"><label>Colonia *<input name="colonia" required maxLength={80} /></label><label>Código postal *<input name="zip" required pattern="[0-9]{5}" inputMode="numeric" maxLength={5} placeholder="31000" /></label></div>
-            <div className="sim-row"><label>Ciudad / municipio *<input name="city" required maxLength={80} /></label><label>Estado *<select name="state" required value={state} onChange={(e) => setState(e.target.value)}><option value="" disabled>Selecciona</option>{['Baja California', 'Baja California Sur', 'Chihuahua', 'Sinaloa', 'Sonora', 'Otro estado'].map((s) => <option key={s}>{s}</option>)}</select></label></div>
+            <div className="sim-row"><label>Ciudad / municipio *<input name="city" required maxLength={80} list="sim-cities" placeholder={state ? 'Elige o escribe tu ciudad' : 'Primero elige el estado'} autoComplete="off" /><datalist id="sim-cities">{(mexicoStates[state] ?? []).map((c) => <option key={c} value={c} />)}</datalist></label><label>Estado *<select name="state" required value={state} onChange={(e) => setState(e.target.value)}><option value="" disabled>Selecciona</option>{mexicoStateNames.map((s) => <option key={s}>{s}</option>)}</select></label></div>
             <label>Referencias de entrega<input name="refs" maxLength={160} placeholder="Entre calles, portón, horario…" /></label>
             <div className="sim-actions"><button type="button" className="button" onClick={() => setStep('customer')}>Atrás</button><button className="button primary" type="submit">Continuar al pago</button></div>
           </form>
