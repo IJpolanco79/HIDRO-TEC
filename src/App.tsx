@@ -51,7 +51,8 @@ function WhatsAppLogo({ size = 19 }: { size?: number }) {
 const projectImages = [
   {
     src: '/images/Render-SolidWorks.jpg',
-    title: 'Render del diseño en SolidWorks',
+    title: 'Render final del proyecto · Diseño final',
+    caption: 'Diseño final del proyecto · render en SolidWorks',
     alt: 'Render en SolidWorks de una mesa de cultivo con área de siembra al centro, dos torres verticales con plantas y un depósito inferior.',
   },
   {
@@ -99,7 +100,7 @@ function ProjectCarousel() {
       onBlur={() => setPaused(false)}
     >
       <img key={activeImage.src} className="prototype-image" src={activeImage.src} alt={activeImage.alt} />
-      <div className="carousel-caption"><b>{activeImage.title}</b><span>Visualización conceptual · no confirma instalaciones o resultados</span></div>
+      <div className="carousel-caption"><b>{activeImage.title}</b><span>{'caption' in activeImage ? activeImage.caption : 'Visualización conceptual · no confirma instalaciones o resultados'}</span></div>
       <div className="carousel-controls">
         <button type="button" onClick={() => showImage(activeIndex - 1)} aria-label="Imagen anterior">‹</button>
         <div className="carousel-dots" aria-label="Seleccionar imagen">
