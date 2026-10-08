@@ -6,7 +6,7 @@ const IVA_RATE = 0.16
 const money = (n: number) => n.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' })
 
 type Step = 'customer' | 'shipping' | 'payment' | 'processing' | 'done'
-type Method = 'visa' | 'mastercard' | 'amex' | 'debit' | 'transfer' | 'oxxo' | 'paypal'
+type Method = 'visa' | 'mastercard' | 'amex' | 'debit' | 'transfer' | 'paypal'
 type Person = 'fisica' | 'moral'
 
 const methods: { id: Method; label: string; hint: string }[] = [
@@ -15,7 +15,6 @@ const methods: { id: Method; label: string; hint: string }[] = [
   { id: 'amex', label: 'American Express', hint: 'Tarjeta de crédito' },
   { id: 'debit', label: 'Tarjeta de débito', hint: 'Visa / Mastercard' },
   { id: 'transfer', label: 'Transferencia SPEI', hint: 'Transferencia bancaria' },
-  { id: 'oxxo', label: 'Pago en OXXO', hint: 'Pago en efectivo' },
   { id: 'paypal', label: 'PayPal', hint: 'Cuenta PayPal' },
 ]
 const cardMethods: Method[] = ['visa', 'mastercard', 'amex', 'debit']
@@ -111,7 +110,6 @@ export function PurchaseSimulation({ onClose }: { onClose: () => void }) {
               </div>
             )}
             {method === 'transfer' && <p className="sim-note">En una compra real recibirías una CLABE para transferir por SPEI. Aquí no se genera ninguna CLABE.</p>}
-            {method === 'oxxo' && <p className="sim-note">En una compra real recibirías una referencia para pagar en tienda. Aquí no se genera ninguna referencia.</p>}
             {method === 'paypal' && <p className="sim-note">En una compra real serías redirigido a PayPal. Aquí no se abre ninguna sesión.</p>}
             {summary}
             <div className="sim-actions"><button type="button" className="button" onClick={() => setStep('shipping')}>Atrás</button><button className="button primary" type="submit">Pagar {money(total)} (simulado)</button></div>
