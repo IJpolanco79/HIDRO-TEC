@@ -58,6 +58,7 @@ export function PurchaseSimulation({ onClose }: { onClose: () => void }) {
     <div className="sim-lines">
       <div><span>Sistema hidropónico HidroTec × 1</span><b>{money(PRICE)}</b></div>
       <div><span>IVA (16%)</span><b>{money(iva)}</b></div>
+      <div><span>Envío nacional</span><b>A cargo del cliente</b></div>
       <div className="sim-total"><span>Total</span><b>{money(total)}</b></div>
     </div>
   )
@@ -89,6 +90,7 @@ export function PurchaseSimulation({ onClose }: { onClose: () => void }) {
 
         {step === 'shipping' && (
           <form className="sim-form" onSubmit={next('payment')}>
+            <p className="sim-ship-note"><b>Envío a todo el país:</b> el costo del envío nacional corre por cuenta del cliente y no está incluido en el precio.</p>
             <label>Calle y número *<input name="street" required maxLength={120} placeholder="Calle Ejemplo 123" /></label>
             <div className="sim-row"><label>Colonia *<input name="colonia" required maxLength={80} /></label><label>Código postal *<input name="zip" required pattern="[0-9]{5}" inputMode="numeric" maxLength={5} placeholder="31000" /></label></div>
             <div className="sim-row"><label>Ciudad / municipio *<input name="city" required maxLength={80} /></label><label>Estado *<select name="state" required defaultValue=""><option value="" disabled>Selecciona</option>{['Baja California', 'Baja California Sur', 'Chihuahua', 'Sinaloa', 'Sonora', 'Otro estado'].map((s) => <option key={s}>{s}</option>)}</select></label></div>
@@ -120,7 +122,7 @@ export function PurchaseSimulation({ onClose }: { onClose: () => void }) {
 
         {step === 'done' && (
           <>
-            <p className="sim-note">{buyer ? <>Gracias, <b>{buyer}</b>. </> : null}Tu pedido simulado fue registrado con el folio <b>{orderId}</b>. Pago con <b>{methodInfo.label}</b> por <b>{money(total)}</b>. Te avisaríamos por correo cuando tu sistema salga a envío.</p>
+            <p className="sim-note">{buyer ? <>Gracias, <b>{buyer}</b>. </> : null}Tu pedido simulado fue registrado con el folio <b>{orderId}</b>. Pago con <b>{methodInfo.label}</b> por <b>{money(total)}</b>. El costo del envío nacional corre por cuenta del cliente. Te avisaríamos por correo cuando tu sistema salga a envío.</p>
             <p className="sim-note">Esto fue solo una demostración: no se cobró nada ni se guardó ninguna información. Para comprar de verdad, continúa en nuestra página web.</p>
             <div className="sim-actions"><button type="button" className="button" onClick={onClose}>Cerrar</button><a className="button primary" href={PURCHASE_URL} target="_blank" rel="noreferrer">Ir a la página web de compra</a></div>
           </>
