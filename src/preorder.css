@@ -260,3 +260,13 @@
 .price-tag{display:flex;flex-direction:column;gap:2px;margin:18px 0 12px}
 .price-tag span{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;opacity:.7}
 .price-tag b{font-size:1.9rem;line-height:1.1}
+
+.sim-backdrop{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:16px;background:rgba(10,20,15,.6)}
+.sim-modal{width:min(480px,100%);max-height:90vh;overflow:auto;background:#fff;color:#14231b;border-radius:16px;padding:22px;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.sim-banner{background:#fff3cd;color:#664d03;border-radius:8px;padding:8px 12px;font-size:.8rem;font-weight:700;margin-bottom:14px}
+.sim-modal h3{margin:0 0 12px}
+.sim-lines{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
+.sim-lines div{display:flex;justify-content:space-between;gap:12px}
+.sim-total{border-top:1px solid #d5ddd8;padding-top:8px;font-size:1.15rem}
+.sim-note{font-size:.9rem;line-height:1.45;margin:0 0 16px}
+.sim-actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end}
