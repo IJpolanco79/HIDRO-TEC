@@ -1,0 +1,25 @@
+.profile{position:relative;margin-left:14px;flex-shrink:0}
+.profile-btn{width:38px;height:38px;border-radius:50%;border:2px solid var(--green);background:var(--mint);color:var(--green);padding:0;overflow:hidden;display:grid;place-items:center;font-weight:800;font-size:12px}
+.profile-btn img,.profile-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.profile-panel{position:absolute;right:0;top:calc(100% + 10px);width:290px;max-width:calc(100vw - 32px);background:#fff;color:#24362e;border:1px solid var(--line);border-radius:14px;box-shadow:0 14px 40px rgba(20,40,30,.2);padding:16px;display:flex;flex-direction:column;gap:14px;z-index:30}
+.profile-head{display:flex;align-items:center;gap:14px}
+.profile-avatar{width:64px;height:64px;border-radius:50%;overflow:hidden;background:var(--mint);color:var(--green);display:grid;place-items:center;font-weight:800;font-size:20px;border:2px solid var(--green)}
+.profile-photo-actions{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.profile-link{background:none;border:0;padding:0;color:var(--green);font-weight:700;font-size:12px;text-decoration:underline;cursor:pointer}
+.profile-field{display:flex;flex-direction:column;gap:5px;font-size:11px;font-weight:700}
+.profile-field input{border:1px solid #d3ddd5;border-radius:8px;padding:9px 10px;font-size:13px;background:#fff;color:#24362e}
+.profile-group{border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.profile-group legend{font-size:11px;font-weight:700;padding:0;margin-bottom:6px}
+.profile-seg{display:grid;grid-template-columns:repeat(3,1fr);background:#eef2ef;border-radius:9px;padding:3px;gap:3px}
+.profile-seg button{border:0;background:transparent;border-radius:7px;padding:8px 4px;font-size:11px;font-weight:600;color:#5b6b62}
+.profile-seg button.on{background:var(--green);color:#fff}
+.profile-swatches{display:flex;gap:10px}
+.profile-swatches button{width:30px;height:30px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #b8c5bc;padding:0}
+.profile-swatches button.on{box-shadow:0 0 0 3px var(--green2)}
+.profile-error{margin:0;font-size:11px;color:#9b2c2c}
+.profile-note{font-size:10px;line-height:1.5;color:#718078}
+
+/* Modo oscuro: invierte la página y restaura imágenes y elementos que no deben invertirse. */
+html[data-theme='dark']{filter:invert(.92) hue-rotate(180deg);background:#0d1511}
+html[data-theme='dark'] img,html[data-theme='dark'] video,html[data-theme='dark'] .profile-swatches button,html[data-theme='dark'] .sim-dhl{filter:invert(1) hue-rotate(180deg)}
+html[data-theme='dark'] .profile-btn img,html[data-theme='dark'] .profile-avatar img{filter:invert(1) hue-rotate(180deg)}

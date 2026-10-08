@@ -2,6 +2,7 @@ import { type FormEvent, type ReactNode, useEffect, useMemo, useState } from 're
 import { crops } from './data/crops'
 import { socialLinks } from './config/socialLinks'
 import { PurchaseSimulation } from './PurchaseSimulation'
+import { ProfileMenu } from './ProfileMenu'
 import { type PreSaleEntry, clearOrders, exportControlExcel, loadOrders } from './orders'
 import { PRICE_LABEL } from './config/purchase'
 
@@ -237,7 +238,7 @@ function App() {
     <header className="topbar"><a className="brand" href="#inicio" aria-label="HidroTec, inicio"><img className="brand-logo" src="/images/Logo%20de%20Hidrotecnm.png" alt="Logo HidroTec, Raíces Flotantes" /><span>Hidro<span>Tec</span><small>INGENIO PANTERA</small></span></a>
       <button className="menu-toggle" onClick={() => setMobileOpen(!mobileOpen)} aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'}><Icon name={mobileOpen ? 'close' : 'menu'} /></button>
       <nav className={mobileOpen ? 'nav open' : 'nav'}><a href="#sistema" onClick={() => setMobileOpen(false)}>El sistema</a><a href="#dashboard" onClick={() => setMobileOpen(false)}>Monitoreo</a><a href="#cultivos" onClick={() => setMobileOpen(false)}>Cultivos</a><a href="#recursos" onClick={() => setMobileOpen(false)}>Recursos</a><a href="#preventa" onClick={() => setMobileOpen(false)}>Preventa</a><a href="#preventa" onClick={() => { setMobileOpen(false); openPurchase() }}>Comprar</a><a href="#preguntas" onClick={() => setMobileOpen(false)}>Preguntas</a><button className="nav-cta" onClick={() => jump('preventa')}>Registro de interés <Icon name="arrow" size={16} /></button></nav>
-    </header>
+    <ProfileMenu /></header>
 
     <main id="inicio">
       <section className="hero section-wrap"><div className="hero-copy"><div className="eyebrow"><span className="eyebrow-dot" /> APRENDER · CULTIVAR · MEDIR</div><h1>Cultivar más cerca.<br /><em>Cuidar cada gota.</em></h1><p className="hero-lead">Una guía abierta para explorar un sistema hidropónico en L, entender sus variables y cultivar con criterio en Chihuahua y el noroeste de México.</p><div className="hero-actions"><button className="button primary" onClick={() => jump('sistema')}>Conocer el sistema <Icon name="arrow" size={17} /></button><button className="button secondary" onClick={() => jump('dashboard')}>Ver dashboard</button><button className="text-link" onClick={() => jump('guia')}>Guía de cultivo <Icon name="arrow" size={16} /></button></div><div className="hero-note"><span className="note-icon"><Icon name="water" size={18} /></span><span>La forma en L organiza el espacio, pero por sí sola <b>no garantiza ahorro de agua ni mayor rendimiento.</b></span></div></div>
