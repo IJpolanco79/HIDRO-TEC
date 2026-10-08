@@ -48,6 +48,11 @@ function WhatsAppLogo({ size = 19 }: { size?: number }) {
 
 const projectImages = [
   {
+    src: '/images/Render-SolidWorks.jpg',
+    title: 'Render del diseño en SolidWorks',
+    alt: 'Render en SolidWorks de una mesa de cultivo con área de siembra al centro, dos torres verticales con plantas y un depósito inferior.',
+  },
+  {
     src: '/images/Prototipo%202%20HidroTec.png',
     title: 'Vista del prototipo',
     alt: 'Representación conceptual de una torre hidropónica junto a un módulo de cultivo, en un entorno desértico.',
