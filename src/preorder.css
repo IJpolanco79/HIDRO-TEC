@@ -295,3 +295,15 @@
 @media(max-width:480px){.sim-row,.sim-toggle{grid-template-columns:1fr}}
 
 .sim-ship-note{margin:0;padding:10px 12px;border-radius:10px;background:#e8f5ee;border:1px solid #1f7a4d;font-size:.85rem;line-height:1.4}
+
+.sim-carrier{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid #1f7a4d;background:#e8f5ee;border-radius:10px;font-size:.85rem}
+.sim-carrier div{display:flex;flex-direction:column;flex:1}
+.sim-carrier small{opacity:.7}
+.sim-dhl{background:#ffcc00;color:#d40511;font-weight:900;font-style:italic;padding:4px 8px;border-radius:4px;letter-spacing:.05em}
+.sim-track{display:flex;flex-direction:column;gap:8px;align-items:flex-start;padding:12px;border-radius:10px;background:#f7faf8;border:1px solid #d5ddd8;margin-bottom:12px;font-size:.85rem}
+.sim-track ol{list-style:none;margin:4px 0;padding:0 0 0 14px;border-left:2px solid #c5d0c9}
+.sim-track li{position:relative;padding:3px 0 3px 10px;color:#7a8a81}
+.sim-track li::before{content:"";position:absolute;left:-20px;top:9px;width:10px;height:10px;border-radius:50%;background:#c5d0c9}
+.sim-track li.done{color:#14231b;font-weight:600}
+.sim-track li.done::before{background:#1f7a4d}
+.sim-track small{opacity:.7}
