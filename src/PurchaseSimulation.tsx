@@ -1,5 +1,6 @@
 import { type FormEvent, useEffect, useRef, useState } from 'react'
-import { saveOrder } from './orders'
+import { sendToTeam } from './orders'
+import { SENDS_TO_TEAM } from './config/backend'
 import { mexicoStateNames, mexicoStates } from './data/mexico'
 import { PURCHASE_URL } from './config/purchase'
 
@@ -58,7 +59,7 @@ export function PurchaseSimulation({ onClose }: { onClose: () => void }) {
       const a = answers.current
       setOrderId(folio)
       setGuide(newGuide)
-      saveOrder({
+      sendToTeam('compra', {
         folio, createdAt: new Date().toISOString(), personType: person === 'fisica' ? 'Persona física' : 'Persona moral',
         legalName: a.legalName ?? '', rfc: (a.rfc ?? '').toUpperCase(), regimen: a.regimen ?? '', email: a.email ?? '', phone: a.phone ?? '',
         cfdi: a.cfdi ? 'Sí' : 'No', street: a.street ?? '', colonia: a.colonia ?? '', zip: a.zip ?? '', city: a.city ?? '', state: a.state ?? '', refs: a.refs ?? '',
@@ -89,7 +90,7 @@ export function PurchaseSimulation({ onClose }: { onClose: () => void }) {
   return (
     <div className="sim-backdrop" role="dialog" aria-modal="true" aria-labelledby="sim-title" onClick={(e) => e.target === e.currentTarget && step !== 'processing' && onClose()}>
       <div className="sim-modal">
-        <div className="sim-banner">SIMULACIÓN · No se realiza ningún cobro ni se guardan ni envían datos. Usa datos ficticios.</div>
+        <div className="sim-banner">{SENDS_TO_TEAM ? 'SIMULACIÓN · No se realiza ningún cobro. Tus datos se envían al equipo de HidroTec para darte seguimiento.' : 'SIMULACIÓN · No se realiza ningún cobro ni se guardan ni envían datos. Usa datos ficticios.'}</div>
         <h3 id="sim-title">{step === 'done' ? '¡Gracias por tu compra!' : step === 'processing' ? 'Procesando pago…' : 'Compra de HidroTec'}</h3>
 
         {steps.includes(step) && (
@@ -160,7 +161,7 @@ export function PurchaseSimulation({ onClose }: { onClose: () => void }) {
               <a className="button" href={DHL_TRACKING + guide} target="_blank" rel="noreferrer">Rastrear en DHL</a>
               <small>La guía es de demostración; en DHL aparecerá como no encontrada. En una compra real recibirías tu guía verdadera.</small>
             </div>}
-            <p className="sim-note">Esto fue solo una demostración: no se cobró nada ni se guardó ninguna información. Para comprar de verdad, continúa en nuestra página web.</p>
+            <p className="sim-note">{SENDS_TO_TEAM ? 'No se cobró nada; el equipo recibió tus datos para darte seguimiento.' : 'Esto fue solo una demostración: no se cobró nada ni se guardó ninguna información.'} Para comprar de verdad, continúa en nuestra página web.</p>
             <div className="sim-actions"><button type="button" className="button" onClick={onClose}>Cerrar</button><a className="button primary" href={PURCHASE_URL} target="_blank" rel="noreferrer">Ir a la página web de compra</a></div>
           </>
         )}
