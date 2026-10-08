@@ -1,0 +1,258 @@
+.preorder-section {
+  background: #f4f7f2;
+  border-block: 1px solid #e5ebe3;
+}
+
+.preorder-grid {
+  display: grid;
+  grid-template-columns: 0.78fr 1.22fr;
+  gap: 18px;
+  align-items: stretch;
+}
+
+.preorder-info,
+.preorder-form {
+  padding: 25px;
+  border: 1px solid #e4eae2;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.preorder-info {
+  background: #e9f0e8;
+  border-color: #dfe8dd;
+}
+
+.preorder-mark {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  color: #51805c;
+  background: #d9e8d8;
+  border-radius: 11px;
+}
+
+.preorder-info h3 {
+  margin: 18px 0 9px;
+  color: #3c5a44;
+  font: 700 19px/1.3 var(--serif);
+}
+
+.preorder-info p,
+.preorder-info li {
+  color: #748176;
+  font-size: 10px;
+  line-height: 1.8;
+}
+
+.preorder-info ul {
+  display: grid;
+  gap: 5px;
+  margin: 17px 0;
+  padding-left: 18px;
+}
+
+.local-data-note {
+  display: flex;
+  gap: 9px;
+  align-items: flex-start;
+  padding: 12px;
+  border-radius: 8px;
+  color: #836b3c;
+  background: #fbf2df;
+  font-size: 9px;
+  line-height: 1.7;
+}
+
+.local-data-note svg {
+  flex: none;
+}
+
+.preorder-form {
+  display: grid;
+  gap: 13px;
+}
+
+.form-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #edf0eb;
+}
+
+.form-heading b {
+  color: #3d5948;
+  font: 700 15px var(--serif);
+}
+
+.form-heading span {
+  color: #99a39b;
+  font-size: 8px;
+}
+
+.preorder-form > label,
+.form-row > label {
+  display: grid;
+  gap: 6px;
+  color: #66766b;
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.preorder-form input:not([type="checkbox"]),
+.preorder-form select {
+  width: 100%;
+  min-height: 40px;
+  padding: 0 11px;
+  border: 1px solid #dfe6de;
+  border-radius: 7px;
+  outline-color: #81a787;
+  background: #fbfcfa;
+  color: #526457;
+  font-size: 10px;
+}
+
+.preorder-form input::placeholder {
+  color: #aab3ab;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.consent-check {
+  display: flex !important;
+  grid-template-columns: none !important;
+  align-items: flex-start;
+  gap: 9px !important;
+  margin-top: 2px;
+  color: #77847a !important;
+  font-size: 9px !important;
+  font-weight: 400 !important;
+  line-height: 1.7;
+}
+
+.consent-check input {
+  flex: none;
+  margin: 2px 0 0;
+  accent-color: #397962;
+}
+
+.preorder-submit {
+  width: 100%;
+  min-height: 43px;
+  border-radius: 7px;
+}
+
+.preorder-status {
+  margin: 0;
+  padding: 11px 12px;
+  border-radius: 7px;
+  background: #edf5ec;
+  color: #4c714f;
+  font-size: 9px;
+  line-height: 1.65;
+}
+
+.saved-records {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  color: #919b92;
+  font-size: 8px;
+}
+
+.saved-records b {
+  color: #56765a;
+}
+
+.saved-records button {
+  border: 0;
+  padding: 4px 0;
+  background: transparent;
+  color: #7c6950;
+  font-size: 8px;
+  text-decoration: underline;
+}
+
+.faq-section {
+  background: #fff;
+}
+
+.faq-list {
+  max-width: 850px;
+  margin-inline: auto;
+  border-top: 1px solid #e5ebe4;
+}
+
+.faq-list details {
+  border-bottom: 1px solid #e5ebe4;
+}
+
+.faq-list summary {
+  position: relative;
+  padding: 18px 38px 18px 4px;
+  color: #3d5947;
+  cursor: pointer;
+  font: 700 13px/1.5 var(--serif);
+  list-style: none;
+}
+
+.faq-list summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-list summary::after {
+  position: absolute;
+  top: 50%;
+  right: 7px;
+  content: "+";
+  color: #719278;
+  font: 400 23px/1 'DM Sans', sans-serif;
+  transform: translateY(-50%);
+}
+
+.faq-list details[open] summary::after {
+  content: "−";
+}
+
+.faq-list details p {
+  max-width: 760px;
+  margin: -3px 35px 19px 4px;
+  color: #768279;
+  font-size: 10px;
+  line-height: 1.85;
+}
+
+@media (max-width: 700px) {
+  .preorder-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .preorder-info,
+  .preorder-form {
+    padding: 18px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .form-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .faq-list summary {
+    padding-block: 15px;
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,141 @@
+.prototype-infographic {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(260px, 0.75fr);
+  margin: 0 0 24px;
+  overflow: hidden;
+  border: 1px solid #dfe8e2;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 14px 32px rgb(36 67 50 / 6%);
+}
+
+.infographic-visual {
+  position: relative;
+  display: grid;
+  min-height: 300px;
+  place-items: center;
+  padding: 15px;
+  background:
+    radial-gradient(ellipse at 55% 54%, rgb(169 207 193 / 40%), transparent 70%),
+    #eaf2ed;
+}
+
+.infographic-visual img {
+  display: block;
+  width: 100%;
+  max-height: 370px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 10px;
+  box-shadow: 0 12px 26px rgb(22 75 66 / 12%);
+}
+
+.infographic-stamp {
+  position: absolute;
+  right: 17px;
+  bottom: 16px;
+  padding: 7px 10px;
+  border: 1px solid rgb(41 104 92 / 18%);
+  border-radius: 20px;
+  background: rgb(250 252 249 / 92%);
+  color: #53776a;
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+}
+
+.prototype-infographic figcaption {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 24px 21px;
+}
+
+.infographic-caption h3 {
+  margin: 10px 0 8px;
+  color: #2f5442;
+  font: 700 21px/1.22 var(--serif);
+  letter-spacing: -0.5px;
+}
+
+.infographic-caption p {
+  margin: 0;
+  color: #77847a;
+  font-size: 9px;
+  line-height: 1.75;
+}
+
+.infographic-legend {
+  display: grid;
+  gap: 12px;
+  margin: 19px 0 0;
+  padding: 16px 0 0;
+  border-top: 1px solid #e9eee8;
+  list-style: none;
+}
+
+.infographic-legend li {
+  display: grid;
+  grid-template-columns: 27px 1fr;
+  gap: 9px;
+  align-items: start;
+}
+
+.infographic-legend li > span {
+  display: grid;
+  width: 25px;
+  height: 25px;
+  place-items: center;
+  border-radius: 50%;
+  background: #edf4ed;
+  color: #548064;
+  font-size: 8px;
+  font-weight: 700;
+}
+
+.infographic-legend b {
+  display: block;
+  color: #49634f;
+  font-size: 9px;
+}
+
+.infographic-legend small {
+  display: block;
+  margin-top: 3px;
+  color: #849087;
+  font-size: 8px;
+  line-height: 1.55;
+}
+
+@media (max-width: 800px) {
+  .prototype-infographic {
+    grid-template-columns: 1fr;
+  }
+
+  .infographic-visual {
+    min-height: 220px;
+  }
+
+  .infographic-visual img {
+    max-height: 320px;
+  }
+
+  .prototype-infographic figcaption {
+    padding: 21px;
+  }
+
+  .infographic-legend {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .infographic-legend {
+    grid-template-columns: 1fr;
+  }
+
+  .infographic-visual {
+    min-height: 190px;
+    padding: 8px;
+  }
+}
