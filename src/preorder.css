@@ -270,3 +270,26 @@
 .sim-total{border-top:1px solid #d5ddd8;padding-top:8px;font-size:1.15rem}
 .sim-note{font-size:.9rem;line-height:1.45;margin:0 0 16px}
 .sim-actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end}
+
+.sim-steps{display:flex;gap:6px;list-style:none;padding:0;margin:0 0 14px;font-size:.8rem}
+.sim-steps li{flex:1;text-align:center;padding:6px;border-radius:8px;background:#eef2ef;color:#5b6b62}
+.sim-steps li.on{background:#14231b;color:#fff;font-weight:700}
+.sim-steps li.past{background:#cfe8d8;color:#14231b}
+.sim-form{display:flex;flex-direction:column;gap:12px}
+.sim-form label{display:flex;flex-direction:column;gap:4px;font-size:.85rem;font-weight:600}
+.sim-form input:not([type=radio]):not([type=checkbox]),.sim-form select{padding:9px 10px;border:1px solid #c5d0c9;border-radius:8px;font:inherit;background:#fff;color:#14231b}
+.sim-form input[readonly]{background:#f3f6f4;color:#4a5a51}
+.sim-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sim-toggle{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.sim-toggle label,.sim-methods label{flex-direction:row;align-items:center;gap:8px;border:1px solid #c5d0c9;border-radius:10px;padding:10px;cursor:pointer}
+.sim-toggle label.on,.sim-methods label.on{border-color:#1f7a4d;background:#e8f5ee}
+.sim-methods{border:0;padding:0;margin:0;display:grid;gap:8px}
+.sim-methods legend{font-size:.85rem;font-weight:700;margin-bottom:6px;padding:0}
+.sim-methods small{margin-left:auto;font-weight:400;opacity:.7}
+.sim-check{flex-direction:row!important;align-items:center;gap:8px}
+.sim-card{display:flex;flex-direction:column;gap:10px;padding:12px;border-radius:10px;background:#f7faf8;border:1px dashed #9fb3a7}
+.sim-card small{opacity:.75}
+.sim-processing{display:grid;place-items:center;gap:8px;padding:24px 0}
+.sim-spinner{width:36px;height:36px;border:4px solid #cfe8d8;border-top-color:#1f7a4d;border-radius:50%;animation:sim-spin 1s linear infinite}
+@keyframes sim-spin{to{transform:rotate(360deg)}}
+@media(max-width:480px){.sim-row,.sim-toggle{grid-template-columns:1fr}}
