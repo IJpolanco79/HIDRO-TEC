@@ -62,7 +62,7 @@ export function PurchaseSimulation({ onClose }: { onClose: () => void }) {
         folio, createdAt: new Date().toISOString(), personType: person === 'fisica' ? 'Persona física' : 'Persona moral',
         legalName: a.legalName ?? '', rfc: (a.rfc ?? '').toUpperCase(), regimen: a.regimen ?? '', email: a.email ?? '', phone: a.phone ?? '',
         cfdi: a.cfdi ? 'Sí' : 'No', street: a.street ?? '', colonia: a.colonia ?? '', zip: a.zip ?? '', city: a.city ?? '', state: a.state ?? '', refs: a.refs ?? '',
-        method: methodInfo.label, subtotal, shipping: SHIPPING, iva, total, guide: newGuide, status: 'Pedido confirmado',
+        method: methodInfo.label, subtotal, shipping: SHIPPING, iva, total, guide: shipsFree ? '' : newGuide, status: 'Pedido confirmado',
       })
       setStep('done')
     }, 2000)
@@ -80,7 +80,7 @@ export function PurchaseSimulation({ onClose }: { onClose: () => void }) {
   const summary = (
     <div className="sim-lines">
       <div><span>Sistema hidropónico HidroTec × 1</span><b>{money(PRICE)}</b></div>
-      <div><span>Envío DHL</span><b>{shipsFree ? 'Incluido en el precio' : money(SHIPPING)}</b></div>
+      {!shipsFree && <div><span>Envío DHL</span><b>{money(SHIPPING)}</b></div>}
       <div><span>IVA (16%)</span><b>{money(iva)}</b></div>
       <div className="sim-total"><span>Total</span><b>{money(total)}</b></div>
     </div>
@@ -114,7 +114,7 @@ export function PurchaseSimulation({ onClose }: { onClose: () => void }) {
         {step === 'shipping' && (
           <form className="sim-form" onSubmit={next('payment')}>
             <p className="sim-ship-note">{!state ? <><b>Envío a todo el país:</b> en Chihuahua el envío ya va incluido en el precio; para el resto del país el costo del envío corre por cuenta del cliente.</> : shipsFree ? <><b>Envío incluido:</b> en Chihuahua el envío ya va incluido en el precio del sistema.</> : <><b>Envío a {state}:</b> el costo del envío nacional corre por cuenta del cliente y no está incluido en el precio del sistema.</>}</p>
-            <div className="sim-carrier"><span className="sim-dhl">DHL</span><div><b>Paquetería DHL{shipsFree ? ' · Chihuahua' : ' · tarifa nacional'}</b><small>Rastreo incluido</small></div><b>{!state ? `${money(SHIPPING_RATE)} + IVA (fuera de Chihuahua)` : shipsFree ? 'Incluido' : `${money(SHIPPING_RATE)} + IVA`}</b></div>
+            {state && !shipsFree && (<div className="sim-carrier"><span className="sim-dhl">DHL</span><div><b>Paquetería DHL · tarifa nacional</b><small>Rastreo incluido</small></div><b>{money(SHIPPING_RATE)} + IVA</b></div>)}
             <label>Calle y número *<input name="street" required maxLength={120} placeholder="Calle Ejemplo 123" /></label>
             <div className="sim-row"><label>Colonia *<input name="colonia" required maxLength={80} /></label><label>Código postal *<input name="zip" required pattern="[0-9]{5}" inputMode="numeric" maxLength={5} placeholder="31000" /></label></div>
             <div className="sim-row"><label>Ciudad / municipio *<input name="city" required maxLength={80} list="sim-cities" placeholder={state ? 'Elige o escribe tu ciudad' : 'Primero elige el estado'} autoComplete="off" /><datalist id="sim-cities">{(mexicoStates[state] ?? []).map((c) => <option key={c} value={c} />)}</datalist></label><label>Estado *<select name="state" required value={state} onChange={(e) => setState(e.target.value)}><option value="" disabled>Selecciona</option>{mexicoStateNames.map((s) => <option key={s}>{s}</option>)}</select></label></div>
@@ -146,8 +146,8 @@ export function PurchaseSimulation({ onClose }: { onClose: () => void }) {
 
         {step === 'done' && (
           <>
-            <p className="sim-note">{buyer ? <>Gracias, <b>{buyer}</b>. </> : null}Tu pedido simulado fue registrado con el folio <b>{orderId}</b>. Pago con <b>{methodInfo.label}</b> por <b>{money(total)}</b>. {shipsFree ? 'El envío DHL va incluido en tu compra.' : 'El envío DHL ($350 + IVA) corre por cuenta del cliente.'} Te avisaríamos por correo cuando tu sistema salga a envío.</p>
-            <div className="sim-track">
+            <p className="sim-note">{buyer ? <>Gracias, <b>{buyer}</b>. </> : null}Tu pedido simulado fue registrado con el folio <b>{orderId}</b>. Pago con <b>{methodInfo.label}</b> por <b>{money(total)}</b>. {shipsFree ? 'El envío va incluido en tu compra.' : 'El envío DHL ($350 + IVA) corre por cuenta del cliente.'} Te avisaríamos por correo cuando tu sistema salga a envío.</p>
+            {!shipsFree && <div className="sim-track">
               <b>Rastreo de paquete · DHL</b>
               <span>Guía simulada: <code>{guide}</code></span>
               <ol>
@@ -159,7 +159,7 @@ export function PurchaseSimulation({ onClose }: { onClose: () => void }) {
               </ol>
               <a className="button" href={DHL_TRACKING + guide} target="_blank" rel="noreferrer">Rastrear en DHL</a>
               <small>La guía es de demostración; en DHL aparecerá como no encontrada. En una compra real recibirías tu guía verdadera.</small>
-            </div>
+            </div>}
             <p className="sim-note">Esto fue solo una demostración: no se cobró nada ni se guardó ninguna información. Para comprar de verdad, continúa en nuestra página web.</p>
             <div className="sim-actions"><button type="button" className="button" onClick={onClose}>Cerrar</button><a className="button primary" href={PURCHASE_URL} target="_blank" rel="noreferrer">Ir a la página web de compra</a></div>
           </>
