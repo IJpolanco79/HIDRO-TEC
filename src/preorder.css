@@ -256,3 +256,7 @@
     font-size: 12px;
   }
 }
+
+.price-tag{display:flex;flex-direction:column;gap:2px;margin:18px 0 12px}
+.price-tag span{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;opacity:.7}
+.price-tag b{font-size:1.9rem;line-height:1.1}
