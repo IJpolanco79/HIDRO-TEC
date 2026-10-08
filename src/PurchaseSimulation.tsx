@@ -1,4 +1,5 @@
-import { type FormEvent, useEffect, useState } from 'react'
+import { type FormEvent, useEffect, useRef, useState } from 'react'
+import { saveOrder } from './orders'
 import { PURCHASE_URL } from './config/purchase'
 
 const PRICE = 15375
@@ -32,6 +33,7 @@ export function PurchaseSimulation({ onClose }: { onClose: () => void }) {
   const [method, setMethod] = useState<Method>('visa')
   const [buyer, setBuyer] = useState('')
   const [guide, setGuide] = useState('')
+  const answers = useRef<Record<string, string>>({})
   const subtotal = PRICE + SHIPPING
   const iva = subtotal * IVA_RATE
   const total = subtotal + iva
@@ -46,8 +48,17 @@ export function PurchaseSimulation({ onClose }: { onClose: () => void }) {
   useEffect(() => {
     if (step !== 'processing') return
     const timer = window.setTimeout(() => {
-      setOrderId(`SIM-${Math.floor(100000 + Math.random() * 900000)}`)
-      setGuide(String(Math.floor(1000000000 + Math.random() * 9000000000)))
+      const folio = `SIM-${Math.floor(100000 + Math.random() * 900000)}`
+      const newGuide = String(Math.floor(1000000000 + Math.random() * 9000000000))
+      const a = answers.current
+      setOrderId(folio)
+      setGuide(newGuide)
+      saveOrder({
+        folio, createdAt: new Date().toISOString(), personType: person === 'fisica' ? 'Persona física' : 'Persona moral',
+        legalName: a.legalName ?? '', rfc: (a.rfc ?? '').toUpperCase(), regimen: a.regimen ?? '', email: a.email ?? '', phone: a.phone ?? '',
+        cfdi: a.cfdi ? 'Sí' : 'No', street: a.street ?? '', colonia: a.colonia ?? '', zip: a.zip ?? '', city: a.city ?? '', state: a.state ?? '', refs: a.refs ?? '',
+        method: methodInfo.label, subtotal, shipping: SHIPPING, iva, total, guide: newGuide, status: 'Pedido confirmado',
+      })
       setStep('done')
     }, 2000)
     return () => window.clearTimeout(timer)
@@ -55,6 +66,8 @@ export function PurchaseSimulation({ onClose }: { onClose: () => void }) {
 
   const next = (to: Step) => (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    const form = new FormData(e.currentTarget)
+    form.forEach((v, k) => { if (typeof v === 'string') answers.current[k] = v.trim() })
     if (step === 'customer') setBuyer(String(new FormData(e.currentTarget).get('legalName') ?? ''))
     setStep(to)
   }

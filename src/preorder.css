@@ -307,3 +307,6 @@
 .sim-track li.done{color:#14231b;font-weight:600}
 .sim-track li.done::before{background:#1f7a4d}
 .sim-track small{opacity:.7}
+
+.register-first{margin:8px 0 0;font-size:.85rem;font-weight:600}
+.preorder-info .button[disabled]{opacity:.5;cursor:not-allowed}
